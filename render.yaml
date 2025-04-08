@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: retail-billing-app
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: retail-billing-db
+          property: connectionString
+
+databases:
+  - name: retail-billing-db
+    plan: free
